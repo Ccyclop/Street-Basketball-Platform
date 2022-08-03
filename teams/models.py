@@ -27,5 +27,3 @@ class Player(models.Model):
         return self.player.username
     
     
-# gavasuftavo baza da shevinaxo team creatori permissionebistvis 
-    

@@ -9,7 +9,7 @@ class CommentSerializer(serializers.ModelSerializer):
     created_at = serializers.DateTimeField(read_only=True)
     class Meta:
         model = Comment
-        fields = ['id', 'author', 'body', 'created_at']
+        fields = ['id', 'author', 'body', 'likes', 'created_at']
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -19,4 +19,4 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'author', 'title', 'description', 'comments', 'happenes_at', 'participants']
+        fields = ['id', 'author', 'title', 'description', 'likes', 'comments', 'happenes_at', 'participants']

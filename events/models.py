@@ -9,8 +9,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=255)
     description = models.TextField()
-
-    # likes
+    likes = models.IntegerField(default=0)
 
     happenes_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -23,8 +22,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     body = models.TextField()
-
-    # likes
+    likes = models.IntegerField(default=0)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
