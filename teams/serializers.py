@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from users.models import User
 
-from .models import Team, Player 
+from .models import Team, Player, Feedback
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -34,16 +34,26 @@ class PlayerSerializer(serializers.ModelSerializer):
 
 
 class TeamSerializer(serializers.ModelSerializer):
+    owner = UserSerializer(many=False)
     members = PlayerSerializer(many=True)
 
     class Meta:
         model = Team
-        fields = ['id', 'name', 'members']
+        fields = ['id', 'owner', 'name', 'members', 'location', 'challanged']
 
 
 class TeamCreateSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Team
-        fields = ['id', 'name']
+        fields = ['id', 'owner', 'name', 'location']
 
+
+class FeedbackSerializer(serializers.ModelSerializer):
+    author = serializers.ReadOnlyField(source='author.username')
+    created_at = serializers.DateTimeField(read_only=True)
+    
+    class Meta:
+        model = Feedback
+        fields = ['id', 'author', 'body', 'stars', 'created_at']
